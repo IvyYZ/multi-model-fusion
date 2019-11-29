@@ -1,4 +1,3 @@
-QQ group: 姿态检测＆跟踪 781184396
 
 # Person ReID
 
