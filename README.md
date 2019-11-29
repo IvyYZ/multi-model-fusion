@@ -96,18 +96,19 @@ NOTE: For the the limitations of the device (GTX1060 6G), while training Se_ResN
 python tools/train.py --config_file='configs/softmax_ranked.yml' DATASETS.NAMES "('market1501')" 
 ```
 
-2. DukeMTMC-reID
-
-
-```bash
-python tools/train.py --config_file='configs/softmax_ranked.yml' DATASETS.NAMES "('dukemtmc')" 
-```
 
 ## Test
 
 ```bash
 python tools/test.py --config_file='configs/softmax_ranked.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" TEST.RE_RANKING "('no')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
 ```
+
+#Multi-model
+Different model will produce different txt files.
+If U want to fusing three model, you need to modify data/dataset/eval_reid.py "flag".
+flag=1 # To get mAP and Top1 for query_val
+flag=2 # To get match submit file
+flag=3 # To achieve multi-model fusion.
 
 ## Using and Compute threshold of negative and postive samples
 
