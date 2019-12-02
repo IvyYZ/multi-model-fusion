@@ -111,6 +111,6 @@ flag=3 # To achieve multi-model fusion.
 model [[link]](https://pan.baidu.com/s/1n3YO87e8XSmgKHyrJB3YHg)
 model result[[link]](https://pan.baidu.com/s/1IkwFvT68pnN4L81d_x3MjQ)
 
-Download Rank_dist_tA.txt MGN_dist_tA.txt MHN_dist_tA.txt from model result, put them in ./Ranked_Person_ReID/ 
+Download files(Rank_dist_tA.txt  MGN_dist_tA.txt  MHN_dist_tA).txt from model result, put them in ./Ranked_Person_ReID/ 
 run test code, you can get test_fusion_A.txt. 
 The file I submitted is from test_fusion_A.txt/test_fusion_B.txt
