@@ -96,131 +96,6 @@ def dist_process3_d(dist):
     norm_d=torch.add(-(torch.mul(torch.add(dd,(-min(dd))),(1/(max_d-min_d)))),1)      
     return norm_d
 
-    
-def compare_d(dist1,dist2,g_names1,g_names2,m,n): #m=len(q_names) n=len(top200)
-    dists3=[]
-    fgnames=[]
-    alph=1.0 #mgn
-    beta=0 #rank
-    for i in range(m):
-        dist3=[]
-        fgname=[]
-        for j in range(n):
-            if ((dist1[i][j]*alph)<=(dist2[i][j]*beta)):
-                better_d=dist1[i][j]
-                better_name=g_names1[i][j]
-            else:
-                better_d=dist2[i][j]
-                better_name=g_names2[i][j]                
-                
-                
-            dist3.append(better_d)   
-            fgname.append(better_name)    
-            
-        dists3.append(dist3)
-        fgnames.append(fgname) 
-    return dists3,fgnames
-
-    
-def compare_d2(dist1,dist2,q_names,g_names1,g_names2,m,n): #m=len(q_names) n=len(top200) compare dist return q-id,gid
-    dists3,fgnames=[],[]
-    q_ids,q_cams,q_files,g_ids,g_cams,gfiles=[],[],[],[],[],[]
-    
-    gooddist=dist1
-    w1=0
-    w2=1
-    alph=1-w1#mgn
-    beta=1-w2#rank 
-    for i in range(m):
-        
-        qq=q_names[i].split('_')
-        q_ids.append(qq[0])
-        q_cams.append(qq[1])
-        q_files.append(qq[2])
-
-        dist3,fgname=[],[]
-        g_id,g_cam,gfile=[],[],[]
-        for j in range(n):
-            if (j>=0):
-            
-                if ((dist1[i][j]*alph)<=(dist2[i][j]*beta)):
-                    better_d=dist1[i][j]
-                    better_name=g_names1[i][j]
-                else:
-                    better_d=dist2[i][j]
-                    better_name=g_names2[i][j]   
-            else:
-                better_d=dist1[i][j]
-                better_name=g_names1[i][j]                 
-                
-                
-            dist3.append(better_d)   
-            fgname.append(better_name)
-            gg=better_name.split('_')
-            g_id.append(gg[0])
-            if(gg[1].isdigit()):
-                g_cam.append(gg[1])
-            else:
-                g_cam.append(gg[1][1])
-            gfile.append(gg[2])
-            
-        dists3.append(dist3)
-        fgnames.append(fgname) 
-        g_ids.append(g_id)
-        g_cams.append(g_cam)
-        gfiles.append(gfile)
-    return dists3,q_ids,q_cams,q_files,g_ids,g_cams,gfiles,fgnames
-
-def compare_d4(dist1,dist2,q_names,g_names1,g_names2,m,n): #m=len(q_names) n=len(top200) compare dist return q-id,gid
-    dists3,fgnames=[],[]
-    q_ids,q_cams,q_files,g_ids,g_cams,gfiles=[],[],[],[],[],[]
-
-        
-    dista=dist_process2(dist1)
-    distb=dist_process3(dist2)
-        
-    
-    gooddist=dist1
-    w1=1
-    w2=0.8
-    alph=1
-    beta=0
-    for i in range(m):
-        
-        qq=q_names[i].split('_')
-        q_ids.append(qq[0])
-        q_cams.append(qq[1])
-        q_files.append(qq[2])
-
-        dist3,fgname=[],[]
-        g_id,g_cam,gfile=[],[],[]
-        for j in range(n):  
-            dist_f=dista[i][j]*alph+distb[i][j]*beta
-            #pdb.set_trace()                                        
-            dist3.append(dist_f)
-        dists3.append(dist3)
-        index=np.argsort(dist3,axis=0)
-#        pdb.set_trace()
-        for j in range(n):
-            better_name=g_names1[i][index[j]]
-            fgname.append(better_name)
-            gg=better_name.split('_')
-            g_id.append(gg[0])
-            if(gg[1].isdigit()):
-                g_cam.append(gg[1])
-            else:
-                g_cam.append(gg[1][1])
-            gfile.append(gg[2])
-            
-        
-        fgnames.append(fgname) 
-        g_ids.append(g_id)
-        g_cams.append(g_cam)
-        gfiles.append(gfile)
-    return dists3,q_ids,q_cams,q_files,g_ids,g_cams,gfiles,fgnames
-
-
-
 def normalize_curve(score_sorted, ref, topN):
     score_norm = score_sorted - ref
     score_norm = (score_norm - min(score_norm[:topN]) + 0.000000000001) / \
@@ -283,7 +158,7 @@ def get_weights(dist1,dist2,m,n): #m=len(q_names) n=len(top200) compare dist ret
     print ('weights done!')
     return weight
 
-def compare_d3(dist1,dist2,dist3,q_names,g_names1,g_names2,g_names3,m,n): #ists_r,dists_h,dists_g
+def compare_d(dist1,dist2,dist3,q_names,g_names1,g_names2,g_names3,m,n): #ists_r,dists_h,dists_g
     
     dists4,fgnames,data=[],[],[]
     q_ids,q_cams,q_files,g_ids,g_cams,gfiles=[],[],[],[],[],[]
@@ -345,7 +220,7 @@ def get_result():
     qnames_h,gnames_h,dists_h=get_dist(dic_H)
     qnames_g,gnames_g,dists_g=get_dist(dic_G)
 
-    dists3,q_ids,q_cams,q_files,g_ids,g_cams,gfiles,fgnames=compare_d3(dists_r,dists_h,dists_g,qnames_r,gnames_r,gnames_h,gnames_g,len(qnames_r),200)
+    dists3,q_ids,q_cams,q_files,g_ids,g_cams,gfiles,fgnames=compare_d(dists_r,dists_h,dists_g,qnames_r,gnames_r,gnames_h,gnames_g,len(qnames_r),200)
     return dists3,q_ids,q_cams,q_files,qnames_r,g_ids,g_cams,gfiles,fgnames
 
 fr1.close()
