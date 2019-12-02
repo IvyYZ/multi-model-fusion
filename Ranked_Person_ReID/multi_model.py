@@ -333,7 +333,7 @@ def compare_d3(dist1,dist2,dist3,q_names,g_names1,g_names2,g_names3,m,n): #ists_
         g_cams.append(g_cam)
         gfiles.append(gfile)
         data.append({qq[2]:gfile})
-        f=open('test_fusion_B.txt','w')      
+        f=open('test_fusion_A.txt','w')      
         f.write(str(data))
         f.close()
    # pdb.set_trace()
