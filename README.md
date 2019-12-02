@@ -108,16 +108,5 @@ flag=2 # To get match submit file
 flag=3 # To achieve multi-model fusion.
 
 ## Using and Compute threshold of negative and postive samples
-
-
-2. Market1501
-
-```bash
-python tools/demo.py 
-```
-
-Compute threshold , to compute threshold i use the hardest samples of negative and postive samples in a batchsizes.
-
-```bash
-python tools/compute_threshold.py --config_file='configs/softmax_ranked.yml' MODEL.PRETRAIN_CHOICE "('self')"  DATASETS.NAMES "('market1501')" TEST.WEIGHT "('models/resnet50_ibn_a/mar_resnet50_ibn_a_model.pth')"
-```
+model [[link]](https://pan.baidu.com/s/1n3YO87e8XSmgKHyrJB3YHg)
+model result[[link]](https://pan.baidu.com/s/1IkwFvT68pnN4L81d_x3MjQ)
