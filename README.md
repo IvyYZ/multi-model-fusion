@@ -97,7 +97,7 @@ python tools/train.py --config_file='configs/softmax_ranked.yml' DATASETS.NAMES 
 ## Test
 
 ```bash
-python tools/test.py --config_file='configs/softmax_ranked.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" TEST.RE_RANKING "('no')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
+python tools/test.py --config_file='configs/softmax_ranked.yml' MODEL.DEVICE_ID "('0')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" TEST.RE_RANKING "('no')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('./work_space/resnet50_ibn_a_model_120.pth')"
 ```
 
 #Multi-model
@@ -110,6 +110,8 @@ flag=3 # To achieve multi-model fusion.
 ## Using and Compute threshold of negative and postive samples
 model [[link]](https://pan.baidu.com/s/1n3YO87e8XSmgKHyrJB3YHg)
 model result[[link]](https://pan.baidu.com/s/1IkwFvT68pnN4L81d_x3MjQ)
+
+Download models from model. Put resnet50_ibn_a_model_120.pth in ./Ranked_Person_ReID/ work_place/
 
 Download files(Rank_dist_tA.txt  MGN_dist_tA.txt  MHN_dist_tA).txt from model result, put them in ./Ranked_Person_ReID/ 
 run test code, you can get test_fusion_A.txt. 
