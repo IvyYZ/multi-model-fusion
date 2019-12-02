@@ -18,9 +18,6 @@ Bag of tricks
 
 
 ## Results
-<div align=center>
-<img src='configs/res.png' width='800'>
-</div>
 
 [models](https://drive.google.com/drive/folders/1CRQJYoCwx3mARckLb6dZpKzMZ_s3SwI3?usp=sharing)
 
@@ -114,16 +111,6 @@ flag=3 # To achieve multi-model fusion.
 
 
 2. Market1501
-
-<div align=center>
-<img src='configs/mar_an.png' width='800'>
-</div>
-
-<div align=center>
-<img src='configs/mar_ap.png' width='800'>
-</div>
-
-Using
 
 ```bash
 python tools/demo.py 
