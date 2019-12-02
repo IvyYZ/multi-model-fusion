@@ -5,13 +5,13 @@ import numpy as np
 import torch
 
 
-fr1=open("Rank_dist_tB.txt",'r+')
+fr1=open("Rank_dist_tA.txt",'r+')
 dic_R = eval(fr1.read())
 
-fr2= open("MHN_dist_tB.txt",'r+') #MGN_dist.txt Rank_dist.txt,PCB_dist.txt,MHN_dist.txt
+fr2= open("MHN_dist_tA.txt",'r+') #MGN_dist.txt Rank_dist.txt,PCB_dist.txt,MHN_dist.txt
 dic_H = eval(fr2.read())   #读取的str转换为字典
 
-fr3 = open("MGN_dist_tB.txt",'r+') #MGN_dist.txt Rank_dist.txt,PCB_dist.txt,MHN_dist.txt
+fr3 = open("MGN_dist_tA.txt",'r+') #MGN_dist.txt Rank_dist.txt,PCB_dist.txt,MHN_dist.txt
 dic_G = eval(fr3.read())   #读取的str转换为字典
 
 def get_dist(dic_txt):  #read .txt (type:list),then transfer to different list
